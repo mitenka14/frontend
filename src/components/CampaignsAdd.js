@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class CompaniesAdd extends React.Component {
+export default class CampaignsAdd extends React.Component {
     state = {
         name: '',
         text: ''
@@ -14,14 +14,13 @@ export default class CompaniesAdd extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        if (this.state.name.trim().length>3 && this.state.text.trim().length>10 ) {
-            axios.post('http://localhost:8080/addcompany', this.state)
-            .then((response) => {
-                if (response.status == 200) {
-                    this.props.history.push('/list');
-                } 
-            })
-        }
+        axios.post('http://localhost:8080/addcampaign', this.state, {headers:{Authorization: 'bearer '+localStorage.getItem('token')}})
+        .then((response) => {
+            if (response.status == 200) {
+               this.props.history.push('/list');
+                
+            } 
+        })
     }
 
   
