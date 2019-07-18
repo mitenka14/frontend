@@ -9,7 +9,7 @@ export default class Users extends React.Component {
         secondName: ''
     }
     componentWillMount(){
-        axios.get('http://localhost:8080'+window.location.pathname, {headers:{Authorization: 'bearer '+localStorage.getItem('token')}})
+        axios.get('http://localhost:8080'+window.location.pathname)
         .then(res => {
             const username = res.data.username;
             const firstName = res.data.firstName;

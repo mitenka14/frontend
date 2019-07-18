@@ -18,6 +18,7 @@ export default class Login extends React.Component {
         .then((response) => {
             if (response.status == 200){
                 localStorage.setItem('token', response.data.token)
+                localStorage.setItem('username', this.state.username)
                 this.props.history.push('/list')
             }
         })
@@ -28,7 +29,7 @@ export default class Login extends React.Component {
     render() {
         const {username, password} = this.state
         return (
-            <div>
+            <div>LOGIN FORM
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <input type="text" name="username" value={username} onChange={this.handleChange}/>

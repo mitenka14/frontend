@@ -2,16 +2,13 @@ import React from 'react';
 
 export default class Header extends React.Component {
     state = {
-        userId: '',
+        username: '',
         buttonText: ''
 
     }
     componentWillMount(){
         if (localStorage.getItem('token') !== ''){
-            var token = localStorage.getItem('token').split('.',3)
-            var tokenPayload = atob(token[1]).split(',',1)
-            var userId = tokenPayload[0].split(':')
-            this.userId="userId"+userId[1]
+            this.username = localStorage.getItem('username')
             this.buttonText = 'LogOut'
         }
         else{
@@ -24,7 +21,8 @@ export default class Header extends React.Component {
             this.props.history.push('/auth/login');
         }
         else{
-            localStorage.setItem('token', '')
+            localStorage.setItem('token', '');
+            localStorage.setItem('username', '');
             this.props.history.push('/list');
         }
     }
@@ -33,7 +31,10 @@ export default class Header extends React.Component {
         return(
             
             <div>
-                <div> {this.userId}/</div>
+                <form action="/list">
+                    <button type="submit">All campaigns</button>
+                </form>
+                <div> {this.username}</div>
                 <form onSubmit={this.handleSubmit}>
                 <button type="submit">{this.buttonText}</button>
                 </form>
