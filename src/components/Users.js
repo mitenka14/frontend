@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default class Users extends React.Component {
     state = {
+        id: '',
         username: '',
         firstName: '',
         secondName: ''
@@ -11,10 +12,11 @@ export default class Users extends React.Component {
     componentWillMount(){
         axios.get('http://localhost:8080'+window.location.pathname)
         .then(res => {
+            const id = res.data.id;
             const username = res.data.username;
             const firstName = res.data.firstName;
             const secondName = res.data.secondName;
-            this.setState({username, firstName, secondName});
+            this.setState({id, username, firstName, secondName});
           })
     }
     
