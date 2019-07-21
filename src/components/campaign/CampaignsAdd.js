@@ -5,7 +5,7 @@ export default class CampaignsAdd extends React.Component {
     state = {
         name: '',
         text: '',
-        username: localStorage.getItem('username')
+        id_user: localStorage.getItem('id')
     }
     
 
@@ -15,14 +15,19 @@ export default class CampaignsAdd extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        axios.post('http://localhost:8080/addcampaign', this.state, {headers:{Authorization: localStorage.getItem('token')}})
-        .then((response) => {
-            console.log(response.data)
-            if (response.status == 200) {
-               this.props.history.push('/list');
+            axios.post('http://localhost:8080/campaigns/new/addcampaign', this.state, {headers:{Authorization: localStorage.getItem('token')}})
+            .then((response) => {
+                console.log(response)
+                if (response.status == 200) {
+                   this.props.history.push('/campaigns/list');   
+                } 
+                if (response.status == 401) {
+                    this.props.history.push('/auth/login')
+                }
                 
-            } 
-        })
+            })
+            
+        
     }
 
   

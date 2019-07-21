@@ -23,7 +23,7 @@ export default class Header extends React.Component {
         else{
             localStorage.setItem('token', '');
             localStorage.setItem('username', '');
-            this.props.history.push('/list');
+            this.props.history.push('/campaigns/list');
         }
     }
     
@@ -31,7 +31,7 @@ export default class Header extends React.Component {
         return(
             
             <div>
-                <form action="/list">
+                <form action="/campaigns/list">
                     <button type="submit">All campaigns</button>
                 </form>
                 <div> {this.username}</div>

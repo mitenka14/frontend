@@ -19,7 +19,12 @@ export default class Login extends React.Component {
             if (response.status == 200){
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', this.state.username)
-                this.props.history.push('/list')
+                var i = response.data.token.split(".")
+                var a = atob(i[1])
+                var b = a.split(",")
+                var c = b[0].split(":")
+                localStorage.setItem('id', c[1])
+                this.props.history.push('/campaigns/list')
             }
         })
     }
