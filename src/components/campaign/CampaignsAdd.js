@@ -22,8 +22,7 @@ export default class CampaignsAdd extends React.Component {
                 localStorage.setItem('image', '')
                 console.log(response)
                 if (response.status == 200) {
-                    console.log(response)
-                //    this.props.history.push('/campaigns/list');   
+                    this.props.history.push('/campaigns/list');   
                 } 
                 if (response.status == 401) {
                     this.props.history.push('/auth/login')
