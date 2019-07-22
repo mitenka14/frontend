@@ -13,6 +13,7 @@ import Users from './components/Users';
 import Campaign from './components/campaign/Campaign';
 import CommentAdd from './components/campaign/CommentAdd';
 import CommentsList from './components/campaign/CommentsList';
+import AddImage from './components/campaign/AddImage';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/users/:username" component={Users}></Route>
           <Route path="/campaigns/campaign/:id/comments/add" component={CommentAdd}/>
           <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
+          <Route path="/campaigns/new/addcampaign/addimage" component={AddImage}/>
       </Router>
     </div>
   );

@@ -7,7 +7,8 @@ export default class Campaign extends React.Component {
         id_user: '',
         name: '',
         text: '',
-        username: ''
+        username: '',
+        imageUrl: ''
     }
 
     componentWillMount(){
@@ -17,7 +18,8 @@ export default class Campaign extends React.Component {
             const name = response.data.name;
             const text = response.data.text;
             const username = response.data.username;
-            this.setState({id_user, name, text, username});
+            const imageUrl = response.data.imageUrl;
+            this.setState({id_user, name, text, username, imageUrl});
           })
     }
     
@@ -26,6 +28,7 @@ export default class Campaign extends React.Component {
             <div>
                 <div>Campaign's info</div>
                 <div><a href={"/users/"+this.state.id_user}>{this.state.username}</a></div>
+                <div><img  src={this.state.imageUrl}/></div>
                 <div>{this.state.name}</div>
                 <div>{this.state.text}</div>
                 <div><a href={window.location.pathname.split("/comments", 1)+'/comments/add'}>ADD COMMENT</a></div>

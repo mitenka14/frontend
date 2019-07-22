@@ -27,6 +27,7 @@ export default class CampaignsList extends React.Component {
           { this.state.campaigns.map(campaign => 
             <li>
               <div><a href={"/users/"+campaign.id_user}>{campaign.username}</a></div>
+              <div><img  src={campaign.imageUrl}/></div>
               <div><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
               <div>{campaign.text}</div>
             </li>

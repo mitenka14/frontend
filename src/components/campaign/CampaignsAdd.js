@@ -5,7 +5,8 @@ export default class CampaignsAdd extends React.Component {
     state = {
         name: '',
         text: '',
-        id_user: localStorage.getItem('id')
+        id_user: localStorage.getItem('id'),
+        imageUrl: localStorage.getItem('image')
     }
     
 
@@ -15,11 +16,14 @@ export default class CampaignsAdd extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        console.log(this.state)
             axios.post('http://localhost:8080/campaigns/new/addcampaign', this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
+                localStorage.setItem('image', '')
                 console.log(response)
                 if (response.status == 200) {
-                   this.props.history.push('/campaigns/list');   
+                    console.log(response)
+                //    this.props.history.push('/campaigns/list');   
                 } 
                 if (response.status == 401) {
                     this.props.history.push('/auth/login')
@@ -45,6 +49,8 @@ export default class CampaignsAdd extends React.Component {
                     </div>
                     <button type="submit">Submit</button>
                 </form>
+                <img  src={this.state.imageUrl}/>
+                <div><a href="/campaigns/new/addcampaign/addimage">ADD IMAGE</a></div>
             </div>
         )
     }
