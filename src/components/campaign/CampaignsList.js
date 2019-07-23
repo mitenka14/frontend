@@ -8,7 +8,7 @@ export default class CampaignsList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:8080/campaigns/list`)
+    axios.get(`http://localhost:8080/campaigns/list/all`)
       .then(res => {
         const campaigns = res.data;
         console.log(res);
@@ -26,10 +26,10 @@ export default class CampaignsList extends React.Component {
         <ul>
           { this.state.campaigns.map(campaign => 
             <li>
-              <div><a href={"/users/"+campaign.id_user}>{campaign.username}</a></div>
+              <div>creator <a href={"/users/"+campaign.id_user}>{campaign.username}</a></div>
               <div><img  src={campaign.imageUrl}/></div>
-              <div><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
-              <div>{campaign.text}</div>
+              <div>name <a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
+              <div>description {campaign.text}</div>
             </li>
           )}
         </ul>

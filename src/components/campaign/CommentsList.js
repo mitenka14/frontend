@@ -23,9 +23,9 @@ export default class CommentsList extends React.Component {
         <ul>
           { this.state.comments.map(comment => 
             <li>
-              <div>{comment.text}</div>
-              {/* <div><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
-              <div>{campaign.text}</div> */}
+                <div><a href={"/users/"+comment.id_user}>{comment.username}</a></div>
+                <div>{comment.text}</div>
+              
             </li>
           )}
         </ul>

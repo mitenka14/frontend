@@ -24,7 +24,7 @@ export default class Login extends React.Component {
                 var b = a.split(",")
                 var c = b[0].split(":")
                 localStorage.setItem('id', c[1])
-                this.props.history.push('/campaigns/list')
+                this.props.history.push('/campaigns/list/all')
             }
         })
     }
@@ -36,11 +36,11 @@ export default class Login extends React.Component {
         return (
             <div>LOGIN FORM
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div>username
                         <input type="text" name="username" value={username} onChange={this.handleChange}/>
                     </div>
-                    <div>
-                        <input type="text" name="password" value={password} onChange={this.handleChange}/>
+                    <div>password
+                        <input type="password" name="password" value={password} onChange={this.handleChange}/>
                     </div>
                     <button type="submit">Submit</button>
                 </form>

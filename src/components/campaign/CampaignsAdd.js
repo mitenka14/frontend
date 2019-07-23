@@ -21,14 +21,18 @@ export default class CampaignsAdd extends React.Component {
             .then((response) => {
                 localStorage.setItem('image', '')
                 console.log(response)
+                console.log(response)
                 if (response.status == 200) {
-                    this.props.history.push('/campaigns/list');   
+                    this.props.history.push('/campaigns/list/all');   
                 } 
                 if (response.status == 401) {
                     this.props.history.push('/auth/login')
                 }
                 
-            })
+            },(error) => { 
+                
+                console.log('ddf')
+                console.log(error) })
             
         
     }
@@ -40,10 +44,10 @@ export default class CampaignsAdd extends React.Component {
         return (
             <div> ADD CAMPAIGN
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div>name
                         <input type="text" name="name" value={name} onChange={this.handleChange}/>
                     </div>
-                    <div>
+                    <div>description
                         <input type="text" name="text" value={text} onChange={this.handleChange}/>
                     </div>
                     <button type="submit">Submit</button>

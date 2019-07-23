@@ -38,20 +38,20 @@ export default class Registration extends React.Component {
         return (
             <div>REGISTRATION FORM
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div>FirstName
                         <input type="text" name="firstName" value={firstName} onChange={this.handleChange}/>
                     </div>
-                    <div>
+                    <div>SecondName
                         <input type="text" name="secondName" value={secondName} onChange={this.handleChange}/>
                     </div>
-                    <div>
+                    <div>username
                         <input type="text" name="username" value={username} onChange={this.handleChange}/>
                     </div>
-                    <div>
+                    <div>email
                         <input type="text" name="email" value={email} onChange={this.handleChange}/>
                     </div>
-                    <div>
-                        <input type="text" name="password" value={password} onChange={this.handleChange}/>
+                    <div>password
+                        <input type="password" name="password" value={password} onChange={this.handleChange}/>
                     </div>
                     <button type="submit">Submit</button>
                 </form>
