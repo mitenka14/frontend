@@ -14,14 +14,15 @@ import Campaign from './components/campaign/Campaign';
 import CommentAdd from './components/campaign/CommentAdd';
 import CommentsList from './components/campaign/CommentsList';
 import AddImage from './components/campaign/AddImage';
-
+import CampaignsListByUser from './components/campaign/CampaignsListByUser';
+import Delete from './components/campaign/Delete';
 
 function App() {
   return (
     <div className="App">
       <Router>  
           <Route path="/" component={Header}/>
-          <Route path="/campaigns/list" component={CampaignsList} />
+          <Route path="/campaigns/list/all" component={CampaignsList} />
           <Route path="/campaigns/campaign/:id" component={Campaign}/>
           <Route path="/campaigns/new/addcampaign" component={CampaignsAdd}/>
           <Route path="/auth/registration" component={Registration}></Route>
@@ -29,10 +30,12 @@ function App() {
           <Route path="/auth/checkemail" component={CheckEmail}></Route>
           <Route path="/auth/succesfulregistration" component={SuccesfulRegistration}></Route>
           <Route path="/auth/login" component={Login}></Route>
-          <Route path="/users/:username" component={Users}></Route>
+          <Route path="/users/:userid" component={Users}></Route>
           <Route path="/campaigns/campaign/:id/comments/add" component={CommentAdd}/>
           <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
           <Route path="/campaigns/new/addcampaign/addimage" component={AddImage}/>
+          <Route path="/campaigns/list/:userid" component={CampaignsListByUser}/>
+          <Route path="/campaigns/campaign/:id/delete" component={Delete}/>
       </Router>
     </div>
   );
