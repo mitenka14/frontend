@@ -11,7 +11,6 @@ export default class CampaignsListByUser extends React.Component {
     axios.get(`http://localhost:8080`+window.location.pathname)
       .then(res => {
         const campaigns = res.data;
-        console.log(res);
         this.setState({ campaigns });
       })
   }

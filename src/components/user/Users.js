@@ -10,7 +10,7 @@ export default class Users extends React.Component {
         secondName: ''
     }
     componentWillMount(){
-        axios.get('http://localhost:8080'+window.location.pathname)
+        axios.get('http://localhost:8080/users/'+window.location.pathname.split('/')[2])
         .then(res => {
             const id = res.data.id;
             const username = res.data.username;

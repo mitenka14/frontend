@@ -15,11 +15,11 @@ export default class AddImage extends React.Component {
     handleUpload(e){
         let formdata = new FormData()
         formdata.append('file', this.state.file)
-        axios.post('http://localhost:8080/campaigns/new/addcampaign/addimage', formdata, {headers:{Authorization: localStorage.getItem('token')}})
+        axios.post('http://localhost:8080/images', formdata, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 if (response.status == 200) {
                     localStorage.setItem('image', response.data)
-                    this.props.history.push('/campaigns/new/addcampaign');   
+                    this.props.history.push(window.location.pathname.replace('/addimage',''));   
                 }
             })
     }

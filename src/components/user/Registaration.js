@@ -19,7 +19,7 @@ export default class Registration extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log(window.location.pathname);
-        axios.post('http://localhost:8080/auth/registration', this.state)
+        axios.post('http://localhost:8080/users/registration', this.state)
         .then((response) => {
             if (response.data.message === "000") {
                 this.props.history.push('/auth/checkemail');

@@ -7,13 +7,20 @@ export default class CommentsList extends React.Component {
     comments: []
   }
 
-  componentDidMount() {
-    axios.get(`http://localhost:8080`+window.location.pathname)
+  componentWillMount() {
+    axios.get(`http://localhost:8080/comments/`+window.location.pathname.split("/")[3])
       .then(res => {
         const comments = res.data;
-        console.log(res);
         this.setState({ comments });
       })
+  }
+
+  componentWillReceiveProps(){
+    axios.get(`http://localhost:8080/comments/`+window.location.pathname.split("/")[3])
+    .then(res => {
+      const comments = res.data;
+      this.setState({ comments });
+    })
   }
 
   render() {

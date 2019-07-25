@@ -8,10 +8,9 @@ export default class CampaignsList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:8080/campaigns/list/all`)
+    axios.get(`http://localhost:8080/campaigns/list`)
       .then(res => {
         const campaigns = res.data;
-        console.log(res);
         this.setState({ campaigns });
       })
   }
@@ -20,7 +19,7 @@ export default class CampaignsList extends React.Component {
     return (
       <div>
         CAMPAIGNS LIST
-        <form action="/campaigns/new/addcampaign">
+        <form action="/campaigns/add">
           <button type="submit">Add campaign</button>
         </form>
         <ul>

@@ -3,27 +3,27 @@ import axios from 'axios';
 
 export default class CommentAdd extends React.Component {
     state = {
-        text: '',
-        id_user: localStorage.getItem('id')
+        text: ''
     }
     
-
+    componentWillMount(){
+        if (localStorage.getItem('token') === ''){
+            this.props.history.push('/auth/login')
+        }
+    }
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value})
     }
 
     handleSubmit = event => {
         event.preventDefault()
-            axios.post('http://localhost:8080'+window.location.pathname, this.state, {headers:{Authorization: localStorage.getItem('token')}})
+            axios.post('http://localhost:8080/comments/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 console.log(response)
                 if (response.status == 200) {
-                   this.props.history.push(window.location.pathname.replace("/add",""));   
+                   this.props.history.push('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split('/')[3]+'/comments');   
                 } 
-                if (response.status == 401) {
-                    this.props.history.push('/auth/login')
-                }
-                
+                                
             })
             
         

@@ -8,11 +8,12 @@ export default class Campaign extends React.Component {
         name: '',
         text: '',
         username: '',
-        imageUrl: ''
+        imageUrl: '',
+
     }
 
     componentWillMount(){
-        axios.get('http://localhost:8080'+window.location.pathname)
+        axios.get('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split("/")[3])
         .then(response => {
             const id_user = response.data.id_user;
             const name = response.data.name;
@@ -31,8 +32,8 @@ export default class Campaign extends React.Component {
                 <div><img  src={this.state.imageUrl}/></div>
                 <div>{this.state.name}</div>
                 <div>{this.state.text}</div>
-                <div><a href={window.location.pathname.split("/comments", 1)+'/comments/add'}>ADD COMMENT</a></div>
-                <div><a href={window.location.pathname.split("/comments", 1)+'/comments'}>COMMENT LIST</a></div>
+                <div><a href={'http://localhost:3000/campaigns/campaign/'+window.location.pathname.split("/")[3]+'/comments/add'}>ADD COMMENT</a></div>
+                <div><a href={'http://localhost:3000/campaigns/campaign/'+window.location.pathname.split("/")[3]+'/comments'}>COMMENTS</a></div>
             </div>
         )
     }
