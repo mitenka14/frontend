@@ -34,8 +34,8 @@ function App() {
           <Route path="/campaigns/campaign/:id/comments/add" component={CommentAdd}/>
           <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
           <Route path="/campaigns/add" component={CampaignsAdd}/>
-          <Route path="/campaigns/userlist/:userid" component={CampaignsListByUser}/>
           <Route path="/campaigns/add/addimage" component={AddImage}/>
+          <Route path="/campaigns/userlist/:userid" component={CampaignsListByUser}/>
           
       </Router>
     </div>
