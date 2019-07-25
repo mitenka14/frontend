@@ -8,7 +8,7 @@ export default class Header extends React.Component {
     }
     componentWillMount(){
         if (localStorage.getItem('token') !== ''){
-            this.state.username = localStorage.getItem('username')
+            this.state.username = localStorage.getItem('username')+localStorage.getItem('role')
             this.state.buttonText = 'LogOut'
         }
         else{
@@ -18,7 +18,7 @@ export default class Header extends React.Component {
 
     componentWillReceiveProps(){
         if (localStorage.getItem('token') !== ''){
-            this.state.username = localStorage.getItem('username')
+            this.state.username = localStorage.getItem('username')+localStorage.getItem('role')
             this.state.buttonText = 'LogOut'
         }
         else{
@@ -30,6 +30,7 @@ export default class Header extends React.Component {
         if (this.state.buttonText === 'LogOut'){
             localStorage.setItem('token', '');
             localStorage.setItem('username', '');
+            localStorage.setItem('role', '')
             this.state.username = '';
             this.state.buttonText = 'Login'
             this.props.history.push('/auth/login');

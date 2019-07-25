@@ -22,7 +22,7 @@ export default class Registration extends React.Component {
         axios.post('http://localhost:8080/users/registration', this.state)
         .then((response) => {
             if (response.data.message === "000") {
-                this.props.history.push('/auth/checkemail');
+                this.props.history.push('/users/checkemail');
             }
             else{
                 this.message = response.data.message;

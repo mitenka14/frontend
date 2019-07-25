@@ -8,9 +8,9 @@ export default class CampaignsListByUser extends React.Component {
   }
 
   componentWillMount() {
-    axios.get(`http://localhost:8080`+window.location.pathname)
-      .then(res => {
-        const campaigns = res.data;
+    axios.get(`http://localhost:8080/campaigns/userlist/`+window.location.pathname.split('/')[3])
+      .then(response => {
+        const campaigns = response.data;
         this.setState({ campaigns });
       })
   }
@@ -19,7 +19,6 @@ export default class CampaignsListByUser extends React.Component {
     return (
       <div>
         USER'S CAMPAIGNS
-        
         <ul>
           { this.state.campaigns.map(campaign => 
             <li>

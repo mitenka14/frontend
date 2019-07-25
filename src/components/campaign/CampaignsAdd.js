@@ -9,6 +9,7 @@ export default class CampaignsAdd extends React.Component {
     }
     
     componentWillMount() {
+        
         if (localStorage.getItem('token')==''){
             this.props.history.push('/auth/login')
         }

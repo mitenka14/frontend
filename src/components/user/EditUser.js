@@ -2,7 +2,7 @@ import React from 'react';
 
 import axios from 'axios';
 
-export default class Users extends React.Component {
+export default class EditUser extends React.Component {
     state = {
         id: '',
         username: '',

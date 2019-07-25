@@ -9,8 +9,8 @@ export default class CommentsList extends React.Component {
 
   componentWillMount() {
     axios.get(`http://localhost:8080/comments/`+window.location.pathname.split("/")[3])
-      .then(res => {
-        const comments = res.data;
+      .then(response => {
+        const comments = response.data;
         this.setState({ comments });
       })
   }
