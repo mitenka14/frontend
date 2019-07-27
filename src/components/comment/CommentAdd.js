@@ -7,9 +7,7 @@ export default class CommentAdd extends React.Component {
     }
     
     componentWillMount(){
-        if (localStorage.getItem('token') === ''){
-            this.props.history.push('/auth/login')
-        }
+        
     }
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value})
@@ -17,11 +15,14 @@ export default class CommentAdd extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        if (localStorage.getItem('token') === ''){
+            this.props.history.push('/auth/login')
+        }
             axios.post('http://localhost:8080/comments/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 console.log(response)
                 if (response.status == 200) {
-                   this.props.history.push('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split('/')[3]+'/comments');   
+                   this.props.history.push('http://localhost:3000/campaigns/campaign/'+window.location.pathname.split('/')[3]+'/comments');   
                 } 
                                 
             })
@@ -35,12 +36,7 @@ export default class CommentAdd extends React.Component {
         const {text} = this.state
         return (
             <div> ADD COMMENT
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input type="text" name="text" value={text} onChange={this.handleChange}/>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+                
             </div>
         )
     }

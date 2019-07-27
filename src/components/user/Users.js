@@ -20,15 +20,33 @@ export default class Users extends React.Component {
             if(localStorage.getItem('role') === '(admin)'){
                 this.role = response.data.role
                 if (response.data.role == 'ROLE_USER'){
-                    this.delete = (
+                    this.adminAction = (
                     <div>
                         <div>
-                            <a href={"http://localhost:3000/users/user/"+window.location.pathname.split("/")[3]+"/delete"}>Delete user</a>
+                            <form onSubmit={this.delete}>
+                                <button type="delete">delete</button>
+                            </form>
                         </div>
                         <div>
-                            <a href={"http://localhost:3000/users/user/"+window.location.pathname.split("/")[3]+"/makeadmin"}>Make admin</a>
+                            <form onSubmit={this.makeAdmin}>
+                                <button type="makeAdmin">Make admin</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action={'/users/user/'+window.location.pathname.split('/')[3]+'/edit'}>
+                                <button type="edit">edit</button>
+                            </form>
                         </div>
                     </div>
+                    )
+                }
+                if (username == localStorage.getItem('username')){
+                    this.userAction = (
+                        <div>
+                            <form action={'/users/user/'+window.location.pathname.split('/')[3]+'/edit'}>
+                                <button type="edit">edit</button>
+                            </form>
+                        </div>
                     )
                 }
             }
@@ -36,11 +54,30 @@ export default class Users extends React.Component {
           })
         
     }
+
+    delete(){
+        axios.delete('http://localhost:8080/users/'+window.location.pathname.split('/')[3], {headers:{Authorization: localStorage.getItem('token')}})
+            .then((response) => {
+                if (response.status==200){
+                    this.componentWillMount()
+                }   
+            })
+    }
+
+    makeAdmin(){
+        axios.get(`http://localhost:8080/users/`+window.location.pathname.split('/')[3]+'/makeadmin', {headers:{Authorization: localStorage.getItem('token')}})
+        .then(response => {
+            if (response.status==200){
+                this.componentWillMount()
+            }  
+        })
+    }
     
     render(){
         return(
             <div>
-                <div>{this.delete}</div>
+                <div>{this.adminAction}</div>
+                <div>{this.userAction}</div>
                 <div>{this.state.username}</div>
                 <div>{this.state.firstName}</div>
                 <div>{this.state.secondName}</div>

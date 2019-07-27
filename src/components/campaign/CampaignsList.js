@@ -17,18 +17,23 @@ export default class CampaignsList extends React.Component {
 
   render() {
     return (
-      <div>
-        CAMPAIGNS LIST
-        <form action="/campaigns/add">
-          <button type="submit">Add campaign</button>
-        </form>
-        <ul>
-          { this.state.campaigns.map(campaign => 
-            <li>
-              <div>creator <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a></div>
-              <div><img  src={campaign.imageUrl}/></div>
-              <div>name <a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
-              <div>description {campaign.text}</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center"><h1>All Campaigns</h1></div>
+        <div class="row">
+          
+        </div>
+        <ul class="list-group">
+          { this.state.campaigns.slice(0).reverse().map(campaign => 
+            <li class="list-group-item  list-group-item-info">
+              <div class="row">
+              <div class="col-2"><img  src={campaign.imageUrl}/></div>
+              <div class="col-9">
+                <div><h3><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></h3></div>
+                <div>{campaign.text.slice(0,200)}</div>
+                </div>
+              <div class="col-1">Creator: <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a></div>
+              
+              </div>
             </li>
           )}
         </ul>

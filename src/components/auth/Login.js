@@ -36,18 +36,24 @@ export default class Login extends React.Component {
     render() {
         const {username, password} = this.state
         return (
-            <div>LOGIN FORM
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    
+                <div class="col-3">
+                    <div>    <h1> LOGIN FORM</h1></div>
+
                 <form onSubmit={this.handleSubmit}>
-                    <div>username
-                        <input type="text" name="username" value={username} onChange={this.handleChange}/>
+                    <div><div>Username</div>
+                        <input type="text" class="form-control" name="username" value={username} placeholder="Enter email" onChange={this.handleChange}/>
                     </div>
-                    <div>password
-                        <input type="password" name="password" value={password} onChange={this.handleChange}/>
+                    <div><div>Password</div>
+                        <input type="password" class="form-control" name="password" value={password} placeholder="Password" onChange={this.handleChange}/>
                     </div>
                     {this.message}
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <dialog>jjj</dialog>
+                </div>
+                </div>
             </div>
         )
     }

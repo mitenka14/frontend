@@ -17,14 +17,23 @@ export default class CampaignsListByUser extends React.Component {
 
   render() {
     return (
-      <div>
-        USER'S CAMPAIGNS
-        <ul>
-          { this.state.campaigns.map(campaign => 
-            <li>
-              <div><img  src={campaign.imageUrl}/></div>
-              <div>name <a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></div>
-              <div>description {campaign.text}</div>
+      <div class="container-fluid">
+        
+        <div class="row">
+          
+        </div>
+        <ul class="list-group">
+          { this.state.campaigns.slice(0).reverse().map(campaign => 
+            <li class="list-group-item  list-group-item-light">
+              <div class="row">
+              <div class="col-2"><img  src={campaign.imageUrl}/></div>
+              <div class="col-10">
+                <div><h3><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></h3></div>
+                <div>{campaign.text.slice(0,200)}</div>
+                </div>
+              
+              
+              </div>
             </li>
           )}
         </ul>

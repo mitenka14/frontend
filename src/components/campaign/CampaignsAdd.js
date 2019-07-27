@@ -17,6 +17,9 @@ export default class CampaignsAdd extends React.Component {
     }
 
     componentWillReceiveProps() {
+        if (localStorage.getItem('token')==''){
+            this.props.history.push('/auth/login')
+        }
         this.state.imageUrl = localStorage.getItem('image')
     }
     handleChange = event => {
@@ -37,25 +40,45 @@ export default class CampaignsAdd extends React.Component {
             
         
     }
-
+    
+    addImage= event =>{
+        this.props.history.push("/campaigns/add/addimage")
+    }
   
 
     render() {
         const {name, text} = this.state
         return (
-            <div> ADD CAMPAIGN
+            <div class="container-fluid"> 
+                
                 <form onSubmit={this.handleSubmit}>
-                    <div>name
-                        <input type="text" name="name" value={name} onChange={this.handleChange}/>
+                <div class="row">
+                    <div class="col-10">
+                <div>    <h1>Add campaign:</h1></div>
+                    <div><div>Name</div>
+                        <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
                     </div>
-                    <div>description
-                        <input type="text" name="text" value={text} onChange={this.handleChange}/>
+                    <div><div>Description</div>
+                        <input type="text" class="form-control" name="text" value={text} onChange={this.handleChange}/>
                     </div>
-                    <button type="submit">Submit</button>
+                    <div>
+                        <img  src={this.state.imageUrl}/>                    
+                    </div>
+                    </div>
+                    <div class="col-2">
+                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                    
+                    </div>
+                </div>
                 </form>
-                <img  src={this.state.imageUrl}/>
-                <div><a href="/campaigns/add/addimage">CHOSE IMAGE</a></div>
+                
+                <form onSubmit={this.addImage}>
+                        <button type="addImage" class="btn btn-outline-secondary">Add Image</button>
+                    
+                    </form>
+                
             </div>
+            
         )
     }
 }
