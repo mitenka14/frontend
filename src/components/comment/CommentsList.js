@@ -15,38 +15,18 @@ export default class CommentsList extends React.Component {
       })
   }
 
-  
-  handleChange = event => {
-    this.text = event.target.value
-}
-
-handleSubmit = event => {
-    event.preventDefault()
-    if (localStorage.getItem('token') === ''){
-        this.props.history.push('/auth/login')
-    }
-        axios.post('http://localhost:8080/comments/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
-        .then((response) => {
-            console.log(response)
-            if (response.status == 200) {
-              this.componentWillMount()
-            } 
-                            
-        })
-        
-    
-}
+  componentWillReceiveProps(){
+    axios.get(`http://localhost:8080/comments/`+window.location.pathname.split("/")[3])
+    .then(res => {
+      const comments = res.data;
+      this.setState({ comments });
+    })
+  }
 
   render() {
-    const {text} = this.text
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input type="text" name="text" value={text} onChange={this.handleChange}/>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+        COMMENTS
         <ul>
           { this.state.comments.map(comment => 
             <li>
