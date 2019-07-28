@@ -23,8 +23,7 @@ export default class Login extends React.Component {
                 if (response.data.userRole == 'ROLE_ADMIN') {
                     localStorage.setItem('role', '(admin)')
                 }
-                console.log(localStorage.getItem('role'))
-                this.props.history.push('/')
+                this.props.history.push('/campaigns/list/all')
             }
             if (response.data.responseTextDto.message == '222'){
                 this.props.history.push('/auth/userblocked')
@@ -51,6 +50,7 @@ export default class Login extends React.Component {
                     </div>
                     {this.message}
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <div><p>New to KEKstarter? <a href="/users/registration">Sign up</a></p></div>
                 </form>
                 </div>
                 </div>

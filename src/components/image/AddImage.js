@@ -18,7 +18,12 @@ export default class AddImage extends React.Component {
         axios.post('http://localhost:8080/images', formdata, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 if (response.status == 200) {
-                    localStorage.setItem('image', response.data)
+                    if(window.location.pathname.split("/")[2] == "editcampaign"){
+                        localStorage.setItem('editimage', response.data)
+                    }
+                    else{
+                        localStorage.setItem('image', response.data)
+                    }
                     this.props.history.push(window.location.pathname.replace('/addimage',''));   
                 }
             })
@@ -29,14 +34,19 @@ export default class AddImage extends React.Component {
 
     render() {
         return (
-            <div> 
-                <form>
-                    <div>
-                        <input type="file" name="file"  onChange={(e)=> this.handleFile(e)}/>
-                    </div>
-                    <button type="button" onClick={(e)=>this.handleUpload(e)}>UPLOAD</button>
-                </form>
-            </div>
+        
+
+        <div >
+        <div class="custom-file col-2">
+            <div class="margin">
+               <input type="file" class="custom-file-input" id="inputGroupFile02" onChange={(e)=> this.handleFile(e)}/>
+              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+              </div>
+             
+             <div><button type="button" class="btn btn-success" onClick={(e)=>this.handleUpload(e)}>UPLOAD</button></div>
+             </div>
+             </div>
+            
         )
     }
 }

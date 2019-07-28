@@ -12,7 +12,6 @@ import UserBlocked from './components/auth/UserBlocked';
 import NavBar from './components/NavBar'
 import Users from './components/user/Users';
 import Campaign from './components/campaign/Campaign';
-import CommentAdd from './components/comment/CommentAdd';
 import CommentsList from './components/comment/CommentsList';
 import AddImage from './components/image/AddImage';
 import CampaignsListByUser from './components/campaign/CampaignsListByUser';
@@ -35,13 +34,12 @@ function App() {
             <Route path="/users/succesfulregistration" component={SuccesfulRegistration}></Route>
             <Route path="/users/admin/userlist" component={UserList}></Route>
             <Route path="/users/user/:userid" component={Users}></Route>
-            <Route path="/users/user/:userid/edit" component={EditUser}></Route>
+            <Route path="/users/edituser/:userid" component={EditUser}></Route>
             <Route path="/users/user/:userid/campaigns" component={CampaignsListByUser}/>
             <Route path="/campaigns/list" component={CampaignsList} />
             <Route path="/campaigns/campaign/:id" component={Campaign}/>
             <Route path="/campaigns/editcampaign/:id" component={CampaignEdit}/>
             <Route path="/campaigns/editcampaign/:id/addimage" component={AddImage}/>
-            <Route path="/campaigns/campaign/:id/comments/add" component={CommentAdd}/>
             <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
             <Route path="/campaigns/add" component={CampaignsAdd}/>
             <Route path="/campaigns/add/addimage" component={AddImage}/>

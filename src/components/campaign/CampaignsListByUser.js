@@ -26,7 +26,7 @@ export default class CampaignsListByUser extends React.Component {
           { this.state.campaigns.slice(0).reverse().map(campaign => 
             <li class="list-group-item  list-group-item-light">
               <div class="row">
-              <div class="col-2"><img  src={campaign.imageUrl}/></div>
+              <div class="col-2"><img class="image" src={campaign.imageUrl}/></div>
               <div class="col-10">
                 <div><h3><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></h3></div>
                 <div>{campaign.text.slice(0,200)}</div>

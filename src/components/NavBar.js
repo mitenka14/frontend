@@ -44,7 +44,7 @@ export default class Header extends React.Component {
         return(
             
             <div class="container">
-                <div class="row" > 
+                <div class="row margin" > 
                     <div class="col-11"></div>
                     <div class="col-1">
                         <div>{this.state.username}</div>
@@ -53,7 +53,7 @@ export default class Header extends React.Component {
                         </form>
                     </div>
                     </div>
-                    <div class="row" > 
+                    <div class="row margin" > 
                     <div class="col-3">
                     <form action="/campaigns/list/all">
                         <button class="btn btn-primary btn-lg" type="submit">All campaigns</button>

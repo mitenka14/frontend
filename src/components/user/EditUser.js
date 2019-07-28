@@ -35,7 +35,9 @@ export default class EditUser extends React.Component {
         axios.post('http://localhost:8080/users/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
         .then((response) => {
 
-            console.log(response)
+            if (response.status == 200){
+                this.props.history.push("/users/user/"+window.location.pathname.split('/')[3])
+            }
            
         })
     }
@@ -47,31 +49,37 @@ export default class EditUser extends React.Component {
     render(){
         const {firstName, secondName, username, email, password, newPassword} = this.state
         return (
-            <div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    
+                <div class="col-4">
+                    <div>    <h1>Edit user</h1></div>
                 <form onSubmit={this.handleSubmit}>
-                    <div>FirstName
-                        <input type="text" name="firstName" value={firstName} onChange={this.handleChange}/>
+                    <div><div>First Name</div>
+                        <input type="text" class="form-control" name="firstName" value={firstName} onChange={this.handleChange}/>
                     </div>
-                    <div>SecondName
-                        <input type="text" name="secondName" value={secondName} onChange={this.handleChange}/>
+                    <div><div>Second Name</div>
+                        <input type="text" class="form-control" name="secondName" value={secondName} onChange={this.handleChange}/>
                     </div>
-                    <div>username
-                        <input type="text" name="username" value={username} onChange={this.handleChange}/>
+                    <div><div>Username</div>
+                        <input type="text" class="form-control" name="username" value={username} onChange={this.handleChange}/>
                     </div>
-                    <div>email
-                        <input type="text" name="email" value={email} onChange={this.handleChange}/>
+                    <div><div>Email</div>
+                        <input type="text" class="form-control" name="email" value={email} onChange={this.handleChange}/>
                     </div>
-                    <div>password(to confirm)
-                        <input type="password" name="password" value={password} onChange={this.handleChange}/>
+                    <div><div>Password (to confirm)</div>
+                        <input type="password" class="form-control" name="password" placeholder="Password" value={password} onChange={this.handleChange}/>
                     </div>
-                    <div>newPassword(if you don't want to change, leave empty)
-                        <input type="password" name="newPassword" value={newPassword} onChange={this.handleChange}/>
+                    <div><div>New Password (if you don't want to change, leave empty)</div>
+                        <input type="password" class="form-control" name="newPassword" placeholder="New password" value={newPassword} onChange={this.handleChange}/>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
                 </form>
                 <form onSubmit={this.cancel}>
-                        <button type="cancel">cancel</button>
+                        <button type="cancel" class="btn btn-warning">Cancel</button>
                     </form>
+            </div>
+            </div>
             </div>
         )
     }

@@ -22,23 +22,36 @@ export default class CampaignEdit extends React.Component {
                 }
             const id = response.data.id;
             const id_user = response.data.id_user;
-            const name = response.data.name;
-            const text = response.data.text;
-            const imageUrl = response.data.imageUrl;
+
+            if(localStorage.getItem('editname') == ''){
+                var name = response.data.name;
+            }
+            else {var name = localStorage.getItem('editname')}
+            if(localStorage.getItem('edittext') == ''){
+                var text = response.data.text;
+            }  
+            else {var text = localStorage.getItem('edittext')} 
+            if(localStorage.getItem('editimage') == ''){
+                var imageUrl = response.data.imageUrl;
+            }
+            else {var imageUrl = localStorage.getItem('editimage')}
             this.setState({id, id_user, name, text, username, imageUrl});
           })
+          
           
         
     }
 
     componentWillReceiveProps(){
-        this.state.imageUrl = localStorage.getItem('image')
+        this.state.imageUrl = localStorage.getItem('editimage')
     }
 
 
 
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value})
+         localStorage.setItem('editname',this.state.name)
+         localStorage.setItem('edittext',this.state.text)
     }
 
     handleSubmit = event => {
@@ -46,6 +59,9 @@ export default class CampaignEdit extends React.Component {
         axios.post('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
         .then((response) => {
             if (response.status == 200){
+                localStorage.setItem('editimage', '')
+                localStorage.setItem('editname', '')
+                localStorage.setItem('edittext', '')
                 this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
             }
         })
@@ -56,6 +72,9 @@ export default class CampaignEdit extends React.Component {
     }
 
     cancel=event=>{
+        localStorage.setItem('editimage', '')
+        localStorage.setItem('editname', '')
+        localStorage.setItem('edittext', '')
         this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
     }
     
@@ -71,11 +90,11 @@ export default class CampaignEdit extends React.Component {
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
                     </div>
-                    <div><div>Description</div>
-                        <input type="text" class="form-control" name="text" value={text} onChange={this.handleChange}/>
+                    <div class="margin"><div>Description</div>
+                        <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>
                     </div>
-                    <div>
-                        <img  src={imageUrl}/>                    
+                    <div class="margin">
+                        <img class="image" src={imageUrl}/>                    
                     </div>
                     </div>
                     <div class="col-2">
@@ -88,7 +107,7 @@ export default class CampaignEdit extends React.Component {
                 </form>
                 
                 <form onSubmit={this.changeImage}>
-                        <button type="changeImage" class="btn btn-outline-secondary">Change Image</button>
+                        <button type="changeImage" class="btn btn-outline-secondary margin">Change Image</button>
                     
                     </form>
                 

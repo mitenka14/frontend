@@ -7,7 +7,10 @@ export default class UserList extends React.Component {
     users: []
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    if(localStorage.getItem('role') !== '(admin)'){
+      this.props.history.push("/")
+    }
     axios.get(`http://localhost:8080/users/admin/userlist`, {headers:{Authorization: localStorage.getItem('token')}})
       .then(response => {
         const users = response.data;
@@ -18,19 +21,27 @@ export default class UserList extends React.Component {
 
   render() {
     return (
-      <div>
-           USERS LIST
-        <ul>
-          { this.state.users.map(user => 
-            <li>
-              <div><a href={'/users/user/'+user.id}>id {user.id}</a></div>
-              <div>username {user.username}</div>
-              <div>firstName {user.firstName}</div>
-              <div>secondName {user.secondName}</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center"><h1>All Users</h1></div>
+        <div class="row">
+          
+        </div>
+        <ul class="list-group">
+          { this.state.users.slice(0).reverse().map(user => 
+            <li class="list-group-item  list-group-item-info">
+              <div class="row">
+              <div class="col-10">
+                <div><h3><a href={"/users/user/"+user.id}>{user.username} id:{user.id}</a></h3></div>
+                <div>First Name {user.firstName}</div>
+                <div>secondName {user.secondName}</div>
+                </div>
+              <div class="col-2"><h3>{user.role}</h3></div>
+              </div>
             </li>
           )}
         </ul>
       </div>
+      
     )
   }
 }

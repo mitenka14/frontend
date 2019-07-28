@@ -94,7 +94,7 @@ export default class Campaign extends React.Component {
                 <div class="row justify-content-center"><h1>{this.state.name}</h1></div>
                 <div class="row">
                     <div class="col-2">
-                        <img  src={this.state.imageUrl}/>
+                        <img  class="image" src={this.state.imageUrl}/>
 
                     </div>
                     <div class="col-8"><h3>Description:</h3>{this.state.text}</div>
@@ -104,7 +104,7 @@ export default class Campaign extends React.Component {
                         {this.edit}
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center margin">
                         <form onSubmit={this.comments}>
                             <button type="comments" class="btn btn-primary">Comments</button>
                         </form>

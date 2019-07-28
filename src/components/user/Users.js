@@ -24,32 +24,33 @@ export default class Users extends React.Component {
                     <div>
                         <div>
                             <form onSubmit={this.delete}>
-                                <button type="delete">delete</button>
+                                <button type="delete" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
                         <div>
                             <form onSubmit={this.makeAdmin}>
-                                <button type="makeAdmin">Make admin</button>
+                                <button type="makeAdmin" class="btn btn-info">Give admin role</button>
                             </form>
                         </div>
                         <div>
-                            <form action={'/users/user/'+window.location.pathname.split('/')[3]+'/edit'}>
-                                <button type="edit">edit</button>
+                            <form action={'/users/edituser/'+window.location.pathname.split('/')[3]}>
+                                <button type="edit" class="btn btn-warning">Edit</button>
                             </form>
                         </div>
                     </div>
                     )
                 }
+            }
                 if (username == localStorage.getItem('username')){
                     this.userAction = (
                         <div>
-                            <form action={'/users/user/'+window.location.pathname.split('/')[3]+'/edit'}>
-                                <button type="edit">edit</button>
+                            <form action={'/users/edituser/'+window.location.pathname.split('/')[3]}>
+                                <button type="edit" class="btn btn-warning">edit</button>
                             </form>
                         </div>
                     )
                 }
-            }
+            
             this.setState({id, username, firstName, secondName});
           })
         
@@ -72,18 +73,45 @@ export default class Users extends React.Component {
             }  
         })
     }
+
+    campaigns = event =>{
+        this.props.history.push('/users/user/'+window.location.pathname.split('/')[3]+'/campaigns')
+    }
     
     render(){
         return(
-            <div>
-                <div>{this.adminAction}</div>
-                <div>{this.userAction}</div>
-                <div>{this.state.username}</div>
-                <div>{this.state.firstName}</div>
-                <div>{this.state.secondName}</div>
-                <div>{this.role}</div>
-                <div><a href={'/users/user/'+window.location.pathname.split('/')[3]+'/campaigns'}>USERS CAMPAIGNS</a></div>
+            <div class="container-fluid">
+                <div class="row justify-content-center"><h1>{this.state.name}</h1></div>
+                <div class="row">
+                    <div class="col-4">
+                        
+                    </div>
+                    <div class="col-6">
+                        <div class="margin"><h3>Username: {this.state.username}</h3></div>
+                        <div><p>First Name: {this.state.firstName}</p></div>
+                        <div><p>Second Name: {this.state.secondName}</p></div>
+                        </div>
+                    <div class="col-2">
+                        <h3>{this.role}</h3>
+                        {this.adminAction}
+                        {this.userAction}
+                    </div>
+                </div>
+                <div class="row justify-content-center margin">
+                        <form onSubmit={this.campaigns}>
+                            <button type="campaigns" class="btn btn-primary">User's campaigns</button>
+                        </form>
+                    </div>
             </div>
+            /* // <div>
+            //     <div>{this.adminAction}</div>
+            //     <div>{this.userAction}</div>
+            //     <div>{this.state.username}</div>
+            //     <div>{this.state.firstName}</div>
+            //     <div>{this.state.secondName}</div>
+            //     <div>{this.role}</div>
+            //     <div><a href={'/users/user/'+window.location.pathname.split('/')[3]+'/campaigns'}>USERS CAMPAIGNS</a></div>
+            // </div> */
         )
     }
 }

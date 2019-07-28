@@ -9,11 +9,14 @@ export default class CampaignsAdd extends React.Component {
     }
     
     componentWillMount() {
-        
+        console.log("3333")
         if (localStorage.getItem('token')==''){
             this.props.history.push('/auth/login')
         }
-        localStorage.setItem('image', '')
+        this.state.imageUrl = localStorage.getItem('image')
+        this.state.name = localStorage.getItem('name')
+        this.state.text = localStorage.getItem('text')
+        
     }
 
     componentWillReceiveProps() {
@@ -21,9 +24,17 @@ export default class CampaignsAdd extends React.Component {
             this.props.history.push('/auth/login')
         }
         this.state.imageUrl = localStorage.getItem('image')
+        console.log(this.state.imageUrl)
+        if (localStorage.getItem('image') != ''){
+            this.image = (
+                <img class="image" src={this.state.imageUrl}/>
+            )
+        } 
     }
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value})
+        localStorage.setItem('name', this.state.name)
+        localStorage.setItem('text', this.state.text)
     }
 
     handleSubmit = event => {
@@ -32,6 +43,8 @@ export default class CampaignsAdd extends React.Component {
             .then((response) => {
                 if (response.status == 200) {
                     localStorage.setItem('image', '')
+                    localStorage.setItem('name', '')
+                    localStorage.setItem('text', '')
                     this.props.history.push('/campaigns/list');   
                 } 
                 
@@ -49,7 +62,7 @@ export default class CampaignsAdd extends React.Component {
     render() {
         const {name, text} = this.state
         return (
-            <div class="container-fluid"> 
+            <div class="container-fluid margin"> 
                 
                 <form onSubmit={this.handleSubmit}>
                 <div class="row">
@@ -58,11 +71,11 @@ export default class CampaignsAdd extends React.Component {
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
                     </div>
-                    <div><div>Description</div>
-                        <input type="text" class="form-control" name="text" value={text} onChange={this.handleChange}/>
+                    <div class="margin"><div>Description</div>
+                        <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>
                     </div>
-                    <div>
-                        <img  src={this.state.imageUrl}/>                    
+                    <div class="margin">
+                         {this.image}                   
                     </div>
                     </div>
                     <div class="col-2">
