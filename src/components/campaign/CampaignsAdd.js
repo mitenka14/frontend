@@ -43,14 +43,13 @@ export default class CampaignsAdd extends React.Component {
         event.preventDefault()
         axios.post('http://localhost:8080/campaigns/add', this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
-                console.log(response)
-                // if (response.status == 200) {
-                //     localStorage.setItem('image', '')
-                //     localStorage.setItem('name', '')
-                //     localStorage.setItem('text', '')
-                //     localStorage.setItem('tagsString', '')
-                //     this.props.history.push('/campaigns/list');   
-                // } 
+                if (response.status == 200) {
+                    localStorage.setItem('image', '')
+                    localStorage.setItem('name', '')
+                    localStorage.setItem('text', '')
+                    localStorage.setItem('tagsString', '')
+                    this.props.history.push('/campaigns/list');   
+                } 
                 
                 
             })
