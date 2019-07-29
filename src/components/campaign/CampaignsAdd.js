@@ -5,16 +5,17 @@ export default class CampaignsAdd extends React.Component {
     state = {
         name: '',
         text: '',
+        tagsString: '',
         imageUrl: ''
     }
     
     componentWillMount() {
-        console.log("3333")
         if (localStorage.getItem('token')==''){
             this.props.history.push('/auth/login')
         }
         this.state.imageUrl = localStorage.getItem('image')
         this.state.name = localStorage.getItem('name')
+        this.state.tagsString = localStorage.getItem('tagsString')
         this.state.text = localStorage.getItem('text')
         
     }
@@ -35,22 +36,25 @@ export default class CampaignsAdd extends React.Component {
         this.setState({[event.target.name]: event.target.value})
         localStorage.setItem('name', this.state.name)
         localStorage.setItem('text', this.state.text)
+        localStorage.setItem('tagsString', this.state.tags)
     }
 
     handleSubmit = event => {
         event.preventDefault()
-            axios.post('http://localhost:8080/campaigns/add', this.state, {headers:{Authorization: localStorage.getItem('token')}})
+        axios.post('http://localhost:8080/campaigns/add', this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
-                if (response.status == 200) {
-                    localStorage.setItem('image', '')
-                    localStorage.setItem('name', '')
-                    localStorage.setItem('text', '')
-                    this.props.history.push('/campaigns/list');   
-                } 
+                console.log(response)
+                // if (response.status == 200) {
+                //     localStorage.setItem('image', '')
+                //     localStorage.setItem('name', '')
+                //     localStorage.setItem('text', '')
+                //     localStorage.setItem('tagsString', '')
+                //     this.props.history.push('/campaigns/list');   
+                // } 
                 
                 
             })
-            
+        
         
     }
     
@@ -60,7 +64,7 @@ export default class CampaignsAdd extends React.Component {
   
 
     render() {
-        const {name, text} = this.state
+        const {name, tagsString, text} = this.state
         return (
             <div class="container-fluid margin"> 
                 
@@ -70,6 +74,9 @@ export default class CampaignsAdd extends React.Component {
                 <div>    <h1>Add campaign:</h1></div>
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
+                    </div>
+                    <div><div>Tags</div>
+                        <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>

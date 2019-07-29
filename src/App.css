@@ -28,3 +28,10 @@ body{
    height: 350px;
    width: max-content;
  }
+ .li{
+  display: inline;
+  margin: 0;
+ }
+ .ul{
+   margin: 0;
+ }

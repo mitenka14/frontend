@@ -16,10 +16,13 @@ export default class Users extends React.Component {
             const username = response.data.username;
             const firstName = response.data.firstName;
             const secondName = response.data.secondName;
-            
             if(localStorage.getItem('role') === '(admin)'){
                 this.role = response.data.role
                 if (response.data.role == 'ROLE_USER'){
+                    if (response.data.blocked === true){
+                        this.blockText = 'Unblock'
+                    }
+                    else{this.blockText = 'Block'}
                     this.adminAction = (
                     <div>
                         <div>
@@ -30,6 +33,11 @@ export default class Users extends React.Component {
                         <div>
                             <form onSubmit={this.makeAdmin}>
                                 <button type="makeAdmin" class="btn btn-info">Give admin role</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form onSubmit={this.block}>
+                                <button type="block" class="btn btn-dark">{this.blockText}</button>
                             </form>
                         </div>
                         <div>
@@ -58,6 +66,15 @@ export default class Users extends React.Component {
 
     delete(){
         axios.delete('http://localhost:8080/users/'+window.location.pathname.split('/')[3], {headers:{Authorization: localStorage.getItem('token')}})
+            .then((response) => {
+                if (response.status==200){
+                    this.componentWillMount()
+                }   
+            })
+    }
+
+    block(){
+        axios.get('http://localhost:8080/users/'+window.location.pathname.split('/')[3]+'/block', {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 if (response.status==200){
                     this.componentWillMount()
@@ -103,15 +120,7 @@ export default class Users extends React.Component {
                         </form>
                     </div>
             </div>
-            /* // <div>
-            //     <div>{this.adminAction}</div>
-            //     <div>{this.userAction}</div>
-            //     <div>{this.state.username}</div>
-            //     <div>{this.state.firstName}</div>
-            //     <div>{this.state.secondName}</div>
-            //     <div>{this.role}</div>
-            //     <div><a href={'/users/user/'+window.location.pathname.split('/')[3]+'/campaigns'}>USERS CAMPAIGNS</a></div>
-            // </div> */
+            
         )
     }
 }

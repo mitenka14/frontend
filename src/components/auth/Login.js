@@ -20,10 +20,11 @@ export default class Login extends React.Component {
             if (response.data.token != null){
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', response.data.username)
+                localStorage.setItem('id', atob(response.data.token.split(".")[1]).split(",")[0].split(":")[1])
                 if (response.data.userRole == 'ROLE_ADMIN') {
                     localStorage.setItem('role', '(admin)')
                 }
-                this.props.history.push('/campaigns/list/all')
+                this.props.history.push("/users/user/"+localStorage.getItem('id'))
             }
             if (response.data.responseTextDto.message == '222'){
                 this.props.history.push('/auth/userblocked')

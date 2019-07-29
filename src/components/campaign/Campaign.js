@@ -8,12 +8,14 @@ export default class Campaign extends React.Component {
         name: '',
         text: '',
         username: '',
-        imageUrl: ''
+        imageUrl: '',
+        tags: []
     }
 
     componentWillMount(){
         axios.get('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split("/")[3])
         .then(response => {
+            console.log(response.data)
             const id_user = response.data.id_user;
             const name = response.data.name;
             const text = response.data.text;
@@ -35,8 +37,13 @@ export default class Campaign extends React.Component {
                     )
                 }
             const imageUrl = response.data.imageUrl;
-            this.setState({id_user, name, text, username, imageUrl});
+            const tags = response.data.tags;
+            this.setState({id_user, name, text, username, imageUrl, tags});
           })
+          localStorage.setItem('editimage', '')
+                localStorage.setItem('editname', '')
+                localStorage.setItem('edittext', '')
+                localStorage.setItem('edittagsString', '')
           
         
     }
@@ -65,7 +72,8 @@ export default class Campaign extends React.Component {
                     )
                 }
             const imageUrl = response.data.imageUrl;
-            this.setState({id_user, name, text, username, imageUrl});
+            const tags = response.data.tags;
+            this.setState({id_user, name, text, username, imageUrl, tags});
           })
           
         
@@ -95,8 +103,10 @@ export default class Campaign extends React.Component {
                 <div class="row">
                     <div class="col-2">
                         <img  class="image" src={this.state.imageUrl}/>
-
-                    </div>
+                        
+                  <div><h4>Tags:</h4></div>
+                <div><ul>{this.state.tags.map(tag=><li><a href={tag.id}>{tag.name}  </a></li>)}</ul></div></div>
+                    
                     <div class="col-8"><h3>Description:</h3>{this.state.text}</div>
                     <div class="col-2">
                         <h3>Creator: <a href={"/users/user/"+this.state.id_user}>{this.state.username}</a></h3>

@@ -9,13 +9,16 @@ export default class CampaignEdit extends React.Component {
         name: '',
         text: '',
         username: '',
-        imageUrl: ''
+        imageUrl: '',
+        tagsString: ''
     }
 
     componentWillMount(){
+        
         localStorage.setItem('image', '')
         axios.get('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split("/")[3])
         .then(response => {
+            console.log(response.data)
             const username = response.data.username;
             if(localStorage.getItem('username') !== username && localStorage.getItem('role') !== '(admin)'){
                     this.props.history.push('/campaigns/campaign/'+window.location.pathname.split("/")[3])
@@ -27,6 +30,10 @@ export default class CampaignEdit extends React.Component {
                 var name = response.data.name;
             }
             else {var name = localStorage.getItem('editname')}
+            if(localStorage.getItem('edittagsString') == ''){
+                var tagsString = response.data.tags.map(tag=>tag.name).join(" ");
+            }
+            else {var tagsString = localStorage.getItem('edittagsString')}
             if(localStorage.getItem('edittext') == ''){
                 var text = response.data.text;
             }  
@@ -35,7 +42,7 @@ export default class CampaignEdit extends React.Component {
                 var imageUrl = response.data.imageUrl;
             }
             else {var imageUrl = localStorage.getItem('editimage')}
-            this.setState({id, id_user, name, text, username, imageUrl});
+            this.setState({id, id_user, name, text, username, imageUrl, tagsString});
           })
           
           
@@ -52,16 +59,19 @@ export default class CampaignEdit extends React.Component {
         this.setState({[event.target.name]: event.target.value})
          localStorage.setItem('editname',this.state.name)
          localStorage.setItem('edittext',this.state.text)
+         localStorage.setItem('edittagsString',this.state.tagsString)
     }
 
     handleSubmit = event => {
         event.preventDefault()
+        console.log(this.state)
         axios.post('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
         .then((response) => {
             if (response.status == 200){
                 localStorage.setItem('editimage', '')
                 localStorage.setItem('editname', '')
                 localStorage.setItem('edittext', '')
+                localStorage.setItem('edittagsString', '')
                 this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
             }
         })
@@ -75,11 +85,12 @@ export default class CampaignEdit extends React.Component {
         localStorage.setItem('editimage', '')
         localStorage.setItem('editname', '')
         localStorage.setItem('edittext', '')
+        localStorage.setItem('edittagsString', '')
         this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
     }
     
     render(){
-        const {text, name, imageUrl} = this.state
+        const {text, name, tagsString, imageUrl} = this.state
         return (
             <div class="container-fluid"> 
                 
@@ -89,6 +100,9 @@ export default class CampaignEdit extends React.Component {
                 <div>    <h1>Edit campaign:</h1></div>
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
+                    </div>
+                    <div><div>Tags</div>
+                        <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>
