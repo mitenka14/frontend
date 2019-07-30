@@ -18,6 +18,7 @@ import CampaignsListByUser from './components/campaign/CampaignsListByUser';
 import UserList from './components/user/UserList';
 import EditUser from './components/user/EditUser';
 import CampaignEdit from './components/campaign/CampaignEdit';
+import Search from './components/search/Search';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
             <Route path="/campaigns/add" component={CampaignsAdd}/>
             <Route path="/campaigns/add/addimage" component={AddImage}/>
+            <Route path="/search" component={Search}/>
             </div>
         </Router>
       

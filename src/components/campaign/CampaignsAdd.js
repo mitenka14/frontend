@@ -25,7 +25,7 @@ export default class CampaignsAdd extends React.Component {
             this.props.history.push('/auth/login')
         }
         this.state.imageUrl = localStorage.getItem('image')
-        console.log(this.state.imageUrl)
+        
         if (localStorage.getItem('image') != ''){
             this.image = (
                 <img class="image" src={this.state.imageUrl}/>
@@ -36,7 +36,7 @@ export default class CampaignsAdd extends React.Component {
         this.setState({[event.target.name]: event.target.value})
         localStorage.setItem('name', this.state.name)
         localStorage.setItem('text', this.state.text)
-        localStorage.setItem('tagsString', this.state.tags)
+        localStorage.setItem('tagsString', this.state.tagsString)
     }
 
     handleSubmit = event => {

@@ -74,7 +74,12 @@ export default class Header extends React.Component {
                         <button class="btn btn-primary btn-lg" type="submit">All campaigns</button>
                     </form>
                     </div>
-                    <div class="col-6"></div>
+                    <div class="col-3">
+                        <form action="/search">
+                            <button class="btn btn-primary btn-lg" type="submit">Find campaign</button>
+                        </form>
+                    </div>
+                    <div class="col-3"></div>
                     <div class="col-3">
                         <form action="/campaigns/add">
                             <button type="submit" class="btn btn-success btn-lg">Add campaign</button>
