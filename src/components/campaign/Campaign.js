@@ -105,7 +105,7 @@ export default class Campaign extends React.Component {
                         <img  class="image" src={this.state.imageUrl}/>
                         
                   <div><h4>Tags:</h4></div>
-                <div><ul>{this.state.tags.map(tag=><li><a href={tag.id}>{tag.name}  </a></li>)}</ul></div></div>
+                <div><ul>{this.state.tags.map(tag=><li><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
                     
                     <div class="col-8"><h3>Description:</h3>{this.state.text}</div>
                     <div class="col-2">
