@@ -8,7 +8,7 @@ export default class CampaignsList extends React.Component {
   }
 
   componentWillMount() {
-    axios.get(`http://localhost:8080/campaigns/list`)
+    axios.get(`http://localhost:8080/campaigns`)
       .then(response => {
         console.log(response)
         const campaigns = response.data;
@@ -33,7 +33,7 @@ export default class CampaignsList extends React.Component {
                 <div>{campaign.text.slice(0,300)}</div>
                 <div class="row">
                   <div class="col-1"><h4>Tags:</h4></div>
-                <div class="col-11"><ul>{campaign.tags.map(tag=><li class="li"><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
+                <div class="col-11"><ul  class="ul1">{campaign.tags.map(tag=><li class="li"><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
                 </div>
               <div class="col-1">Creator: <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a></div>
               

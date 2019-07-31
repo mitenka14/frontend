@@ -41,7 +41,7 @@ export default class CampaignsAdd extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        axios.post('http://localhost:8080/campaigns/add', this.state, {headers:{Authorization: localStorage.getItem('token')}})
+        axios.post('http://localhost:8080/campaigns', this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
                 if (response.status == 200) {
                     localStorage.setItem('image', '')

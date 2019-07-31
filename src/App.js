@@ -19,6 +19,8 @@ import UserList from './components/user/UserList';
 import EditUser from './components/user/EditUser';
 import CampaignEdit from './components/campaign/CampaignEdit';
 import Search from './components/search/Search';
+import CampaignsByTag from './components/search/CampaignsByTag';
+import SearchResult from './components/search/SearchResult';
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
             <Route path="/campaigns/add" component={CampaignsAdd}/>
             <Route path="/campaigns/add/addimage" component={AddImage}/>
             <Route path="/search" component={Search}/>
+            <Route path="/search/tag/:id" component={CampaignsByTag}/>
+            <Route path="/search/text/:id" component={SearchResult}/>
             </div>
         </Router>
       

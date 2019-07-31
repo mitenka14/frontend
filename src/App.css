@@ -16,8 +16,8 @@ body{
 
  .image {
    border-radius: 50%;
-   height: 100px;
-   width: 100px;
+   height: 200px;
+   width: 200px;
  }
 
  .margin{
@@ -34,4 +34,15 @@ body{
  }
  .ul{
    margin: 0;
+ }
+ .ul1{
+  margin-left: 0;
+  padding-left: 0;
+ }
+ .li1{
+  list-style-type: none;
+ }
+ .nav{
+   border-bottom: 10px;
+   border-bottom-color: black
  }
