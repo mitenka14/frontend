@@ -10,7 +10,19 @@ export default class CampaignsList extends React.Component {
   componentWillMount() {
     axios.get('http://localhost:8080/campaigns/search/'+window.location.pathname.split('/')[3])
       .then(response => {
-        console.log(response)
+        const campaigns = response.data;
+        this.setState({ campaigns });
+      })
+  }
+
+  componentWillReceiveProps() {
+    axios.get('http://localhost:8080/campaigns/search/'+window.location.pathname.split('/')[3])
+      .then(response => {
+        if (response.data.length == 0){
+          this.nothingFound = (
+              <div><h1>Nothing found</h1></div>
+          )
+        }
         const campaigns = response.data;
         this.setState({ campaigns });
       })
@@ -19,7 +31,7 @@ export default class CampaignsList extends React.Component {
   render() {
     return (
       <div class="container-fluid">
-        <div class="row justify-content-center"><h1></h1></div>
+        <div class="row justify-content-center">{this.nothingFound}</div>
         <div class="row">
           
         </div>

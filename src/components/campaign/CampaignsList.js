@@ -25,7 +25,7 @@ export default class CampaignsList extends React.Component {
         </div>
         <ul class="list-group">
           { this.state.campaigns.slice(0).reverse().map(campaign => 
-            <li class="list-group-item  list-group-item-list">
+            <li class="list-group-item  list-group-item-list margin">
               <div class="row">
               <div class="col-2"><img class="image" src={campaign.imageUrl}/></div>
               <div class="col-9">

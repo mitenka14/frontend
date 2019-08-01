@@ -41,14 +41,13 @@ handleSubmit = event => {
     return (
       <div class="container">
         <div class="row">
-          <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col">
         <form onSubmit={this.handleSubmit} >
                   <div class="row margin">
                     <div class="col-10" >
                         <input type="text" class="form-control" name="text" placeholder="Write a comment" value={text} onChange={this.handleChange}/>
                     </div>
-                    <div class="col">
+                    <div class="col-2">
                     <button type="submit" class="btn btn-success">Send</button>
                     </div>
                     </div>
@@ -64,7 +63,6 @@ handleSubmit = event => {
         </ul>
       
             </div>
-            <div class="col-3"></div>
             </div>
             </div>
     )

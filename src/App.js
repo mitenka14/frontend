@@ -21,6 +21,7 @@ import CampaignEdit from './components/campaign/CampaignEdit';
 import Search from './components/search/Search';
 import CampaignsByTag from './components/search/CampaignsByTag';
 import SearchResult from './components/search/SearchResult';
+import AddBonus from './components/bonuses/AddBonus';
 
 function App() {
   return (
@@ -43,9 +44,9 @@ function App() {
             <Route path="/campaigns/campaign/:id" component={Campaign}/>
             <Route path="/campaigns/editcampaign/:id" component={CampaignEdit}/>
             <Route path="/campaigns/editcampaign/:id/addimage" component={AddImage}/>
-            <Route path="/campaigns/campaign/:id/comments" component={CommentsList}/>
             <Route path="/campaigns/add" component={CampaignsAdd}/>
             <Route path="/campaigns/add/addimage" component={AddImage}/>
+            <Route path="/bonuses/campaign/:id" component={AddBonus}/>
             <Route path="/search" component={Search}/>
             <Route path="/search/tag/:id" component={CampaignsByTag}/>
             <Route path="/search/text/:id" component={SearchResult}/>

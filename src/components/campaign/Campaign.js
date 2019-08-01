@@ -1,6 +1,8 @@
 import React from 'react';
 
 import axios from 'axios';
+import CommentsList from '../comment/CommentsList';
+import BonusesByCampaign from '../bonuses/BonusesByCampaign';
 
 export default class Campaign extends React.Component {
     state = {
@@ -15,7 +17,6 @@ export default class Campaign extends React.Component {
     componentWillMount(){
         axios.get('http://localhost:8080/campaigns/campaign/'+window.location.pathname.split("/")[3])
         .then(response => {
-            console.log(response.data)
             const id_user = response.data.id_user;
             const name = response.data.name;
             const text = response.data.text;
@@ -32,6 +33,13 @@ export default class Campaign extends React.Component {
                         <div>
                         <form action={'/campaigns/editcampaign/'+window.location.pathname.split('/')[3]}>
                             <button type="edit" class="btn btn-warning">edit</button>
+                        </form>
+                    </div>
+                    )
+                    this.setBonuses = (
+                        <div>
+                        <form action={'/bonuses/campaign/'+window.location.pathname.split('/')[3]}>
+                            <button type="edit" class="btn btn-success">add bonus</button>
                         </form>
                     </div>
                     )
@@ -70,6 +78,13 @@ export default class Campaign extends React.Component {
                         </form>
                     </div>
                     )
+                    this.setBonuses = (
+                        <div>
+                        <form action={'/bonuses/campaign/'+window.location.pathname.split('/')[3]}>
+                            <button type="edit" class="btn btn-success">add bonus</button>
+                        </form>
+                    </div>
+                    )
                 }
             const imageUrl = response.data.imageUrl;
             const tags = response.data.tags;
@@ -92,9 +107,7 @@ export default class Campaign extends React.Component {
     }
 
 
-    comments = event =>{
-        this.props.history.push('/campaigns/campaign/'+window.location.pathname.split("/")[3]+'/comments')
-    }
+    
     
     render(){
         return(
@@ -107,22 +120,23 @@ export default class Campaign extends React.Component {
                   <div><h4>Tags:</h4></div>
                 <div><ul>{this.state.tags.map(tag=><li><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
                     
-                    <div class="col-8"><h3>Description:</h3>{this.state.text}</div>
+                    <div class="col-8"><h3>Description:</h3><div class="margin30">{this.state.text}</div>
+                    <div class="row">
+                <CommentsList/>
+                    </div></div>
                     <div class="col-2">
                         <h3>Creator: <a href={"/users/user/"+this.state.id_user}>{this.state.username}</a></h3>
                         {this.delete}
                         {this.edit}
+                        {this.setBonuses}
+                        <BonusesByCampaign/>
                     </div>
                 </div>
-                <div class="row justify-content-center margin">
-                        <form onSubmit={this.comments}>
-                            <button type="comments" class="btn btn-primary">Comments</button>
-                        </form>
-                    </div>
                 
                 
                 
-
+                
+                
             </div>
         )
     }
