@@ -17,6 +17,7 @@ export default class AddBonus extends React.Component {
         event.preventDefault()
         axios.post('http://localhost:8080/bonuses/campaign/'+window.location.pathname.split("/")[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
             .then((response) => {
+                
                 if (response.status == 200) {
                     this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3]);   
                 } 

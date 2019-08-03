@@ -6,6 +6,7 @@ export default class CampaignsAdd extends React.Component {
         name: '',
         text: '',
         tagsString: '',
+        goal: '',
         imageUrl: ''
     }
     
@@ -16,6 +17,7 @@ export default class CampaignsAdd extends React.Component {
         this.state.imageUrl = localStorage.getItem('image')
         this.state.name = localStorage.getItem('name')
         this.state.tagsString = localStorage.getItem('tagsString')
+        this.state.goal = localStorage.getItem('goal')
         this.state.text = localStorage.getItem('text')
         
     }
@@ -36,6 +38,7 @@ export default class CampaignsAdd extends React.Component {
         this.setState({[event.target.name]: event.target.value})
         localStorage.setItem('name', this.state.name)
         localStorage.setItem('text', this.state.text)
+        localStorage.setItem('goal', this.state.goal)
         localStorage.setItem('tagsString', this.state.tagsString)
     }
 
@@ -47,6 +50,7 @@ export default class CampaignsAdd extends React.Component {
                     localStorage.setItem('image', '')
                     localStorage.setItem('name', '')
                     localStorage.setItem('text', '')
+                    localStorage.setItem('goal', '')
                     localStorage.setItem('tagsString', '')
                     this.props.history.push('/campaigns/list');   
                 } 
@@ -63,7 +67,7 @@ export default class CampaignsAdd extends React.Component {
   
 
     render() {
-        const {name, tagsString, text} = this.state
+        const {name, tagsString, goal, text} = this.state
         return (
             <div class="container-fluid margin"> 
                 
@@ -76,6 +80,9 @@ export default class CampaignsAdd extends React.Component {
                     </div>
                     <div><div>Tags</div>
                         <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
+                    </div>
+                    <div><div>Goal</div>
+                        <input type="number" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>

@@ -24,7 +24,7 @@ export default class CampaignsList extends React.Component {
         </div>
         <ul class="list-group">
           { this.state.campaigns.slice(0).reverse().map(campaign => 
-            <li class="list-group-item  list-group-item-list">
+            <div class="margin30"><li class="list-group-item  list-group-item-list">
               <div class="row">
               <div class="col-2"><img class="image" src={campaign.imageUrl}/></div>
               <div class="col-9">
@@ -37,7 +37,7 @@ export default class CampaignsList extends React.Component {
               <div class="col-1">Creator: <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a></div>
               
               </div>
-            </li>
+            </li></div>
           )}
         </ul>
       </div>

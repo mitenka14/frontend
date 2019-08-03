@@ -54,11 +54,11 @@ handleSubmit = event => {
                 </form>
         <ul class="list-group">
           { this.state.comments.slice(0).reverse().map(comment => 
-            <li class="list-group-item list-group-item-primary">
+            <div class="margin"><li class="list-group-item list-group-item-primary">
                 <div><a href={"/users/user/"+comment.id_user}>{comment.username}:</a></div>
                 <div>{comment.text}</div>
               
-            </li>
+            </li></div>
           )}
         </ul>
       

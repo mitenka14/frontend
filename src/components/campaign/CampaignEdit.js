@@ -10,7 +10,8 @@ export default class CampaignEdit extends React.Component {
         text: '',
         username: '',
         imageUrl: '',
-        tagsString: ''
+        tagsString: '',
+        goal: 0
     }
 
     componentWillMount(){
@@ -42,7 +43,11 @@ export default class CampaignEdit extends React.Component {
                 var imageUrl = response.data.imageUrl;
             }
             else {var imageUrl = localStorage.getItem('editimage')}
-            this.setState({id, id_user, name, text, username, imageUrl, tagsString});
+            if(localStorage.getItem('editgoal') == ''){
+                var goal = response.data.goal;
+            }
+            else {var goal = localStorage.getItem('editgoal')}
+            this.setState({id, id_user, name, text, username, imageUrl, tagsString, goal});
           })
           
           
@@ -60,6 +65,7 @@ export default class CampaignEdit extends React.Component {
          localStorage.setItem('editname',this.state.name)
          localStorage.setItem('edittext',this.state.text)
          localStorage.setItem('edittagsString',this.state.tagsString)
+         localStorage.setItem('editgoal', this.state.goal)
     }
 
     handleSubmit = event => {
@@ -72,6 +78,7 @@ export default class CampaignEdit extends React.Component {
                 localStorage.setItem('editname', '')
                 localStorage.setItem('edittext', '')
                 localStorage.setItem('edittagsString', '')
+                localStorage.setItem('editgoal', '')
                 this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
             }
         })
@@ -86,11 +93,12 @@ export default class CampaignEdit extends React.Component {
         localStorage.setItem('editname', '')
         localStorage.setItem('edittext', '')
         localStorage.setItem('edittagsString', '')
+        localStorage.setItem('editgoal', '')
         this.props.history.push('/campaigns/campaign/'+window.location.pathname.split('/')[3])
     }
     
     render(){
-        const {text, name, tagsString, imageUrl} = this.state
+        const {text, name, tagsString, imageUrl, goal} = this.state
         return (
             <div class="container-fluid"> 
                 
@@ -103,6 +111,9 @@ export default class CampaignEdit extends React.Component {
                     </div>
                     <div><div>Tags</div>
                         <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
+                    </div>
+                    <div><div>Goal</div>
+                        <input type="number" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>

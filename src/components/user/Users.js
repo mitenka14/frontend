@@ -1,6 +1,7 @@
 import React from 'react';
 
 import axios from 'axios';
+import BonusesByUser from '../bonuses/BonusesByUser';
 
 export default class Users extends React.Component {
     state = {
@@ -101,7 +102,8 @@ export default class Users extends React.Component {
                 <div class="row justify-content-center"><h1>{this.state.name}</h1></div>
                 <div class="row">
                     <div class="col-4">
-                        
+                    {this.adminAction}
+                        {this.userAction}
                     </div>
                     <div class="col-6">
                         <div class="margin"><h3>Username: {this.state.username}</h3></div>
@@ -110,8 +112,7 @@ export default class Users extends React.Component {
                         </div>
                     <div class="col-2">
                         <h3>{this.role}</h3>
-                        {this.adminAction}
-                        {this.userAction}
+                        <BonusesByUser/>
                     </div>
                 </div>
                 <div class="row justify-content-center margin">
