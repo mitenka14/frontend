@@ -48,7 +48,7 @@ handleSubmit = event => {
                         <input type="text" class="form-control" name="text" placeholder="Write a comment" value={text} onChange={this.handleChange}/>
                     </div>
                     <div class="col-2">
-                    <button type="submit" class="btn btn-success">Send</button>
+                    <button type="submit" class="btn btn-outline-success">Send</button>
                     </div>
                     </div>
                 </form>

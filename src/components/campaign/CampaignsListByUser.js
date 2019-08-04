@@ -27,7 +27,7 @@ export default class CampaignsListByUser extends React.Component {
             <div class="margin30"><li class="list-group-item  list-group-item-list">
               <div class="row">
               <div class="col-2"><img class="image" src={campaign.imageUrl}/></div>
-              <div class="col-10">
+              <div class="col-8">
                 <div><h3><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></h3></div>
                 <div>{campaign.text.slice(0,300)}</div>
                 <div class="row">
@@ -36,7 +36,12 @@ export default class CampaignsListByUser extends React.Component {
                 
                 </div>
               
-              
+                <div class="col-2">
+                
+                  <div>
+                  Category: <a href={"/campaigns/category/"+campaign.category}>{campaign.category}</a>
+                  </div>
+                  </div>
               </div>
             </li></div>
           )}

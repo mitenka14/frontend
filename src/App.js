@@ -12,7 +12,7 @@ import UserBlocked from './components/auth/UserBlocked';
 import NavBar from './components/NavBar'
 import Users from './components/user/Users';
 import Campaign from './components/campaign/Campaign';
-import CommentsList from './components/comment/CommentsList';
+import CampaignsByCategory from './components/campaign/CampaignsByCategory';
 import AddImage from './components/image/AddImage';
 import CampaignsListByUser from './components/campaign/CampaignsListByUser';
 import UserList from './components/user/UserList';
@@ -29,6 +29,7 @@ function App() {
        
         <Router>  
             <Route path="/" component={NavBar}/>
+            <div class="back">
             <div class="layer">
             <Route path="/auth/login" component={Login}></Route>
             <Route path="/auth/userblocked" component={UserBlocked}></Route>
@@ -42,6 +43,7 @@ function App() {
             <Route path="/users/user/:userid/campaigns" component={CampaignsListByUser}/>
             <Route path="/campaigns/list" component={CampaignsList} />
             <Route path="/campaigns/campaign/:id" component={Campaign}/>
+            <Route path="/campaigns/category/:category" component={CampaignsByCategory}/>
             <Route path="/campaigns/editcampaign/:id" component={CampaignEdit}/>
             <Route path="/campaigns/editcampaign/:id/addimage" component={AddImage}/>
             <Route path="/campaigns/add" component={CampaignsAdd}/>
@@ -50,6 +52,7 @@ function App() {
             <Route path="/search" component={Search}/>
             <Route path="/search/tag/:id" component={CampaignsByTag}/>
             <Route path="/search/text/:id" component={SearchResult}/>
+            </div>
             </div>
         </Router>
       

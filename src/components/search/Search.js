@@ -5,13 +5,11 @@ import axios from 'axios';
 export default class Tags extends React.Component {
     state = {
         tags: [],
-        text:''
+        text: ''
     }
     componentWillMount(){
         axios.get('http://localhost:8080/tags')
-        .then(response => {
-            console.log(response.data)
-            const tags = response.data;   
+        .then(response => { 
             this.setState({tags: response.data});
           })
         
@@ -32,16 +30,19 @@ export default class Tags extends React.Component {
         const {text} = this.state
         return(
             <div class="container-fluid">
-                <div class="margin"></div>
+                <div class="margin30"></div>
+        <div class="row justify-content-center margin30"><h1>Find campaign</h1></div>
                 <div class="row">
                 <div class="col-10">
+                    <div class="margin90"></div>
                 <form onSubmit={this.handleSubmit}>
                     <div class="row">
-                    <div class="col-10">
-                        <input type="text" class="form-control" name="text" value={text} placeholder="Enter your search query" onChange={this.handleChange}/>
+                    <div class="col-2"></div>
+                    <div class="col-8 margin30">
+                        <input type="text" class="form-control" name="text" value={text} placeholder="Search" onChange={this.handleChange}/>
                     </div>
                     <div class="col-2">
-                    <button type="submit" class="btn btn-primary">Find</button></div>
+                    <button type="submit" class="btn btn-outline-success">Search</button></div>
                     </div>
                 </form>
                 </div>

@@ -7,7 +7,8 @@ export default class CampaignsAdd extends React.Component {
         text: '',
         tagsString: '',
         goal: '',
-        imageUrl: ''
+        imageUrl: '',
+        category: 'Arts'
     }
     
     componentWillMount() {
@@ -67,22 +68,34 @@ export default class CampaignsAdd extends React.Component {
   
 
     render() {
-        const {name, tagsString, goal, text} = this.state
+        const {name, tagsString, goal, text, category} = this.state
         return (
             <div class="container-fluid margin"> 
-                
+            <div class="margin30"></div>
+                <div class="row justify-content-center margin30"><h1>Add campaign:</h1></div>
                 <form onSubmit={this.handleSubmit}>
-                <div class="row">
+                <div class="row ">
                     <div class="col-10">
-                <div>    <h1>Add campaign:</h1></div>
+                        
+                
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
                     </div>
+                    <div>Choose category:</div>
+                        <select name="category" class="form-control" value={category} onChange={this.handleChange}>
+                            <option value="Arts">Arts</option>
+                            <option value="Books">Books</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Films">Films</option>
+                            <option value="Games">Games</option>
+                            <option value="Music">Music</option>
+                        </select>
+                        
                     <div><div>Tags</div>
                         <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
                     </div>
                     <div><div>Goal</div>
-                        <input type="number" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
+                        <input type="number" step="1" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>

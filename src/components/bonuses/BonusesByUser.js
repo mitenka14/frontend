@@ -9,9 +9,8 @@ export default class BonusesByUser extends React.Component {
     componentWillMount(){
         axios.get('http://localhost:8080/bonuses/user/'+window.location.pathname.split("/")[3])
         .then(response => {
-            
+            console.log(response)
             this.setState({bonuses: response.data});
-            console.log(this.state) 
           })
         
     }
@@ -24,7 +23,7 @@ export default class BonusesByUser extends React.Component {
         return(
                 <div>
                     <h3>Bonuses:</h3>
-                    <ul class="list-group">{this.state.bonuses.map(bonus=>
+                    <ul class="list-group">{this.state.bonuses.slice(0).reverse().map(bonus=>
                         <div class="margin">
                             <li class="list-group-item  list-group-item">
                             <div class="margin">{bonus.text}</div>

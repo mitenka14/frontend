@@ -40,7 +40,8 @@ export default class Registration extends React.Component {
                 <div class="row justify-content-center">
                     
                 <div class="col-4">
-                    <div>    <h1>Registration form</h1></div>
+                <div class="margin30"></div>
+                    <div class="margin30">    <h1>Registration form</h1></div>
                 <form onSubmit={this.handleSubmit}>
                     <div><div>First Name</div>
                         <input type="text" class="form-control" name="firstName" placeholder="First Name" value={firstName} onChange={this.handleChange}/>

@@ -34,8 +34,8 @@ export default class EditUser extends React.Component {
         event.preventDefault();
         axios.post('http://localhost:8080/users/'+window.location.pathname.split('/')[3], this.state, {headers:{Authorization: localStorage.getItem('token')}})
         .then((response) => {
-
-            if (response.status == 200){
+            console.log(response)
+            if (response.data.message === '000'){
                 this.props.history.push("/users/user/"+window.location.pathname.split('/')[3])
             }
            

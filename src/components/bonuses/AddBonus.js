@@ -40,7 +40,7 @@ export default class AddBonus extends React.Component {
                     <div class="col-10">
                 <div>    <h1>Add bonus:</h1></div>
                     <div><div>Price</div>
-                        <input type="number" class="form-control" name="price" value={price} onChange={this.handleChange}/>
+                        <input type="number" step="1" class="form-control" name="price" value={price} onChange={this.handleChange}/>
                     </div>
                     
                     <div class="margin"><div>Description</div>

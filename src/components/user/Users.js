@@ -99,14 +99,14 @@ export default class Users extends React.Component {
     render(){
         return(
             <div class="container-fluid">
-                <div class="row justify-content-center"><h1>{this.state.name}</h1></div>
+                <div class="margin30"></div>
                 <div class="row">
                     <div class="col-4">
                     {this.adminAction}
                         {this.userAction}
                     </div>
                     <div class="col-6">
-                        <div class="margin"><h3>Username: {this.state.username}</h3></div>
+                        <div class="margin30"><h2>Username: {this.state.username}</h2></div>
                         <div><p>First Name: {this.state.firstName}</p></div>
                         <div><p>Second Name: {this.state.secondName}</p></div>
                         </div>

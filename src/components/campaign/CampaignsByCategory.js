@@ -8,9 +8,8 @@ export default class CampaignsList extends React.Component {
   }
 
   componentWillMount() {
-    axios.get(`http://localhost:8080/campaigns`)
+    axios.get('http://localhost:8080/campaigns/category/'+window.location.pathname.split('/')[3])
       .then(response => {
-        console.log(response)
         const campaigns = response.data;
         this.setState({ campaigns });
       })
@@ -19,9 +18,8 @@ export default class CampaignsList extends React.Component {
   render() {
     return (
       <div class="container-fluid">
-        
-        <div class="margin30"></div>
-        <div class="row justify-content-center margin30"><h1>All Campaigns</h1></div>
+          <div class="margin30"></div>
+        <div class="row justify-content-center margin30"><h1>Category: {window.location.pathname.split('/')[3]}</h1></div>
         <div class="row">
           
         </div>
@@ -30,21 +28,15 @@ export default class CampaignsList extends React.Component {
             <div class="margin30"><li class="list-group-item  list-group-item-list">
               <div class="row">
               <div class="col-2"><img class="image" src={campaign.imageUrl}/></div>
-              <div class="col-8">
+              <div class="col-9">
                 <div><h3><a href={"/campaigns/campaign/"+campaign.id}>{campaign.name}</a></h3></div>
                 <div>{campaign.text.slice(0,300)}</div>
                 <div class="row">
                   <div class="col-1"><h4>Tags:</h4></div>
-                <div class="col-11"><ul  class="ul1">{campaign.tags.map(tag=><li class="li"><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
+                <div class="col-11"><ul class="ul1">{campaign.tags.map(tag=><li class="li"><a href={'/search/tag/'+tag.id}>{tag.name}  </a></li>)}</ul></div></div>
                 </div>
-              <div class="col-2">
-                <div>
-                  Creator: <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a>
-                  </div>
-                  <div>
-                  Category: <a href={"/campaigns/category/"+campaign.category}>{campaign.category}</a>
-                  </div>
-                  </div>
+              <div class="col-1">Creator: <a href={"/users/user/"+campaign.id_user}>{campaign.username}</a></div>
+              
               </div>
             </li></div>
           )}

@@ -39,8 +39,10 @@ export default class Login extends React.Component {
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     
+                    
                 <div class="col-3">
-                    <div>    <h1> LOGIN FORM</h1></div>
+                <div class="margin30"></div>
+                    <div class="margin30">    <h1> Login form</h1></div>
 
                 <form onSubmit={this.handleSubmit}>
                     <div><div>Username</div>

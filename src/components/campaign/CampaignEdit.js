@@ -11,7 +11,8 @@ export default class CampaignEdit extends React.Component {
         username: '',
         imageUrl: '',
         tagsString: '',
-        goal: 0
+        goal: 0,
+        category: ''
     }
 
     componentWillMount(){
@@ -26,7 +27,7 @@ export default class CampaignEdit extends React.Component {
                 }
             const id = response.data.id;
             const id_user = response.data.id_user;
-
+            const category = response.data.category;
             if(localStorage.getItem('editname') == ''){
                 var name = response.data.name;
             }
@@ -47,7 +48,7 @@ export default class CampaignEdit extends React.Component {
                 var goal = response.data.goal;
             }
             else {var goal = localStorage.getItem('editgoal')}
-            this.setState({id, id_user, name, text, username, imageUrl, tagsString, goal});
+            this.setState({id, id_user, name, text, username, imageUrl, tagsString, goal, category});
           })
           
           
@@ -98,22 +99,32 @@ export default class CampaignEdit extends React.Component {
     }
     
     render(){
-        const {text, name, tagsString, imageUrl, goal} = this.state
+        const {text, name, tagsString, imageUrl, goal, category} = this.state
         return (
             <div class="container-fluid"> 
-                
+                <div class="margin30"></div>
+                <div class="row justify-content-center margin30"><h1>Edit campaign:</h1></div>
                 <form onSubmit={this.handleSubmit}>
                 <div class="row">
                     <div class="col-10">
-                <div>    <h1>Edit campaign:</h1></div>
+                    
                     <div><div>Name</div>
                         <input type="text" class="form-control" name="name" value={name} onChange={this.handleChange}/>
                     </div>
+                    <div>Choose category:</div>
+                    <select name="category" class="form-control" value={category} onChange={this.handleChange}>
+                            <option value="Arts">Arts</option>
+                            <option value="Books">Books</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Films">Films</option>
+                            <option value="Games">Games</option>
+                            <option value="Music">Music</option>
+                        </select>
                     <div><div>Tags</div>
                         <input type="text" class="form-control" name="tagsString" value={tagsString} onChange={this.handleChange}/>
                     </div>
                     <div><div>Goal</div>
-                        <input type="number" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
+                        <input type="number" step="1" class="form-control" name="goal" value={goal} onChange={this.handleChange}/>
                     </div>
                     <div class="margin"><div>Description</div>
                         <textarea type="text" class="form-control" rows="10" name="text" value={text} onChange={this.handleChange}/>
