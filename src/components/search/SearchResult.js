@@ -10,6 +10,11 @@ export default class CampaignsList extends React.Component {
   componentWillMount() {
     axios.get('http://localhost:8080/campaigns/search/'+window.location.pathname.split('/')[3])
       .then(response => {
+        if (response.data.length == 0){
+          this.nothingFound = (
+              <div><h1>Nothing found</h1></div>
+          )
+        }
         const campaigns = response.data;
         this.setState({ campaigns });
       })

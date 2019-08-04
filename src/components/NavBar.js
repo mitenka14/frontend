@@ -32,7 +32,8 @@ export default class Header extends React.Component {
             this.state.id = localStorage.getItem('id')
             if(localStorage.getItem('role') === '(admin)'){
                     this.adminAction = (
-                        <a href="/users/admin/userlist"> (admin)</a>
+                        <div class="row"><div class="col-11"></div> <div class="col-1">
+                        <a href="/users/admin/userlist"> (admin)</a></div></div>
                      )   
             }
         }
@@ -71,20 +72,7 @@ export default class Header extends React.Component {
         return(
             
             <div class="background">
-                <div class="row margin" > 
-                <div class="col-3">{this.adminAction}</div>
-                    <div class="col-6 kekstarter row justify-content-center">KEKstarter</div>
-                    <div class="col-2">
-                        <div class="float"><h2><a href={"/users/user/"+this.state.id}>{this.state.username}</a></h2></div>
-                        </div>
-                        <div class="col-1">
-                        <form onSubmit={this.handleSubmit}>
-                            <button type="submit" class="btn btn-outline-danger btn-lg">{this.state.buttonText}</button>
-                        </form>
-                    </div>
-                    </div>
-
-                    
+                                        {this.adminAction}          
 
 
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -118,46 +106,20 @@ export default class Header extends React.Component {
       
       
     </ul>
+    <div class="kekstarter">KEKstarter</div>
     <form onSubmit={this.searchSubmit} class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" name="text" value={text} placeholder="Search" onChange={this.searchChange} aria-label="Search"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    <div class="mr"></div>
+    <div class="float"><h3><a href={"/users/user/"+this.state.id}>{this.state.username}</a></h3></div>
+    <div class="mr"></div>
+    <form onSubmit={this.handleSubmit}>
+                            <button type="submit" class="btn btn-outline-danger">{this.state.buttonText}</button>
+                        </form>
   </div>
 </nav>
 
-                    {/* <div class="row margin" > 
-                    <div class="col-3">
-                    <form action="/campaigns/list/all">
-                        <button class="btn btn-primary btn-lg" type="submit">All campaigns</button>
-                    </form>
-                    </div>
-                    <div class="col-3">
-                        <form action="/search">
-                            <button class="btn btn-primary btn-lg" type="submit">Find campaign</button>
-                        </form>
-                    </div>
-                    <div class="col-3">
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success btn-lg" id="dropdown-basic">
-                        Category
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="/campaigns/category/Arts">Arts</Dropdown.Item>
-                        <Dropdown.Item href="/campaigns/category/Books">Books</Dropdown.Item>
-                        <Dropdown.Item href="/campaigns/category/Electronics">Electronics</Dropdown.Item>
-                        <Dropdown.Item href="/campaigns/category/Films">Films</Dropdown.Item>
-                        <Dropdown.Item href="/campaigns/category/Games">Games</Dropdown.Item>
-                        <Dropdown.Item href="/campaigns/category/Music">Music</Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown>
-                    </div>
-                    <div class="col-3">
-                        <form action="/campaigns/add">
-                            <button type="submit" class="btn btn-success btn-lg">Add campaign</button>
-                        </form>
-                    </div>
-                    </div> */}
                     
                 </div>
             

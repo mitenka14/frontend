@@ -8,18 +8,22 @@
   background-size: cover;
   
 }
+.mr{
+  margin-right: 5px
+}
 
 .kekstarter{
   font-size: 40px;
-  color: green
+  color: green;
+  margin-right: 430px;
 }
 .background{
-  background-color: white;
+  background-color: yellow;
 }
 .layer {
   overflow-y: scroll; 
   width: 100%;
-  height: 800px;
+  height: 810px;
  } 
 
  .image {
